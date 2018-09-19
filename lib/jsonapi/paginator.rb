@@ -40,6 +40,10 @@ class OffsetPaginator < JSONAPI::Paginator
     true
   end
 
+  def calculate_page_count(record_count)
+    (record_count / @limit.to_f).ceil
+  end
+
   def apply(relation, _order_options)
     relation.offset(@offset).limit(@limit)
   end
